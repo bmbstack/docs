@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>代码和设计规范</title>
+  <subtitle>Coding&amp;Design Guidelines</subtitle>
+  <link href="/atom.xml" rel="self"/>
+  
+  <link href="http://docs.bmbstack.com/"/>
+  <updated>2016-06-03T14:05:18.000Z</updated>
+  <id>http://docs.bmbstack.com/</id>
+  
+  <author>
+    <name>变美实验室</name>
+    
+  </author>
+  
+  <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>V1.0.0 Beta Released</title>
+    <link href="http://docs.bmbstack.com/news/2015/11/15/beta-released/"/>
+    <id>http://docs.bmbstack.com/news/2015/11/15/beta-released/</id>
+    <published>2015-11-15T00:00:00.000Z</published>
+    <updated>2016-06-03T14:05:18.000Z</updated>
+    
+    <content type="html">&lt;p&gt;&lt;code&gt;MAC全栈开发环境搭建指南&lt;/code&gt; 中英双语V1.0.0 Beta版本发布。感谢各位开源贡献人员。&lt;/p&gt;
+&lt;h2 id=&quot;特性&quot;&gt;&lt;a href=&quot;#特性&quot; class=&quot;headerlink&quot; title=&quot;特性&quot;&gt;&lt;/a&gt;特性&lt;/h2&gt;&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;中文双语版本&lt;/p&gt;
+&lt;p&gt;英文为简版，6级刚刚及格抱歉了~&lt;br&gt;欢迎英文达人参与 &lt;code&gt;MAC全栈开发环境搭建指南&lt;/code&gt; 的维护。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;修复了配置站点根目录为网站子目录时切换语言404的bug。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;去掉了retinajs的特性，现在srcset支持不错，没必要使用retinajs做响应式图片加载。&lt;/li&gt;
+&lt;/ul&gt;
+</content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;&lt;code&gt;MAC全栈开发环境搭建指南&lt;/code&gt; 中英双语V1.0.0 Beta版本发布。感谢各位开源贡献人员。&lt;/p&gt;
+&lt;h2 id=&quot;特性&quot;&gt;&lt;a href=&quot;#特性&quot; class=&quot;headerlink&quot; title=&quot;特性&quot;&gt;&lt;/a&gt;特性&lt;/h2&gt;&lt;ul&gt;
+&lt;l
+    
+    </summary>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>V1.0.0 Preview (预览版)</title>
+    <link href="http://docs.bmbstack.com/news/2015/11/13/first-released/"/>
+    <id>http://docs.bmbstack.com/news/2015/11/13/first-released/</id>
+    <published>2015-11-13T00:00:00.000Z</published>
+    <updated>2016-06-03T14:05:18.000Z</updated>
+    
+    <content type="html">&lt;p&gt;&lt;code&gt;MAC全栈开发环境搭建指南&lt;/code&gt; 中文预览版发布。感谢各位开源贡献人员。&lt;/p&gt;
+&lt;h2 id=&quot;特性&quot;&gt;&lt;a href=&quot;#特性&quot; class=&quot;headerlink&quot; title=&quot;特性&quot;&gt;&lt;/a&gt;特性&lt;/h2&gt;&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;&lt;a href=&quot;https://github.com/hexojs/hexo&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;HEXO&lt;/a&gt;&lt;/strong&gt;: 使用hexo作为指南的静态站点引擎。&lt;/li&gt;
+&lt;li&gt;按照工作角色将指南分为通用、交互、视觉、前端开发、后台开发等几个部分。&lt;/li&gt;
+&lt;li&gt;修复了hexo文档大纲的bug。&lt;/li&gt;
+&lt;/ul&gt;
+</content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;&lt;code&gt;MAC全栈开发环境搭建指南&lt;/code&gt; 中文预览版发布。感谢各位开源贡献人员。&lt;/p&gt;
+&lt;h2 id=&quot;特性&quot;&gt;&lt;a href=&quot;#特性&quot; class=&quot;headerlink&quot; title=&quot;特性&quot;&gt;&lt;/a&gt;特性&lt;/h2&gt;&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;&lt;a
+    
+    </summary>
+    
+    
+  </entry>
+  
+</feed>

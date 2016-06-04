@@ -1,0 +1,34 @@
+title: 代码和设计规范
+subtitle: "Coding&Design Guidelines"
+description: "Best Coding&Design Guidelines For Developer and Designer."
+author: 变美实验室
+language: zh-cn
+timezone: UTC
+url: http://docs.bmbstack.com/
+root: /
+permalink: news/:year/:month/:day/:title/
+archive_dir: news
+code_dir: downloads/code
+new_post_name: :year-:month-:day-:title.md # File name of new posts
+post_asset_folder: true
+highlight:
+  enable: true
+  line_number: false
+per_page: 0
+
+theme: navy
+deploy:
+  type: git
+  repo: git@github.com:bmbstack/docs.git
+  branch: gh-pages
+
+disqus_shortname:
+google_analytics: UA-4910098-10
+baidu_analytics: bb4b770d7fdf4e05245cd1327199d813
+fb_admins: 100000247608790
+swiftype_key: nxhXzi1rDss_9_P_6zBa
+twitter: wangmingjob
+github: bmbstack/docs
+gh:
+  user: bmbstack
+  repo: docs
