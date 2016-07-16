@@ -23,3 +23,5 @@ docs:
     name_image: name/image.html
     name_htmlcss: name/htmlcss.html
     name_class: name/classname.html
+  backend:
+    backend_data_security: backend/data_security.html

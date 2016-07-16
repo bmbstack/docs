@@ -5,11 +5,11 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://docs.bmbstack.com/"/>
-  <updated>2016-06-03T14:05:18.000Z</updated>
+  <updated>2016-07-15T22:22:29.000Z</updated>
   <id>http://docs.bmbstack.com/</id>
   
   <author>
-    <name>变美实验室</name>
+    <name>Ripple团队</name>
     
   </author>
   
@@ -20,7 +20,7 @@
     <link href="http://docs.bmbstack.com/news/2015/11/15/beta-released/"/>
     <id>http://docs.bmbstack.com/news/2015/11/15/beta-released/</id>
     <published>2015-11-15T00:00:00.000Z</published>
-    <updated>2016-06-03T14:05:18.000Z</updated>
+    <updated>2016-07-15T22:22:29.000Z</updated>
     
     <content type="html">&lt;p&gt;&lt;code&gt;MAC全栈开发环境搭建指南&lt;/code&gt; 中英双语V1.0.0 Beta版本发布。感谢各位开源贡献人员。&lt;/p&gt;
 &lt;h2 id=&quot;特性&quot;&gt;&lt;a href=&quot;#特性&quot; class=&quot;headerlink&quot; title=&quot;特性&quot;&gt;&lt;/a&gt;特性&lt;/h2&gt;&lt;ul&gt;
@@ -49,7 +49,7 @@
     <link href="http://docs.bmbstack.com/news/2015/11/13/first-released/"/>
     <id>http://docs.bmbstack.com/news/2015/11/13/first-released/</id>
     <published>2015-11-13T00:00:00.000Z</published>
-    <updated>2016-06-03T14:05:18.000Z</updated>
+    <updated>2016-07-15T22:22:29.000Z</updated>
     
     <content type="html">&lt;p&gt;&lt;code&gt;MAC全栈开发环境搭建指南&lt;/code&gt; 中文预览版发布。感谢各位开源贡献人员。&lt;/p&gt;
 &lt;h2 id=&quot;特性&quot;&gt;&lt;a href=&quot;#特性&quot; class=&quot;headerlink&quot; title=&quot;特性&quot;&gt;&lt;/a&gt;特性&lt;/h2&gt;&lt;ul&gt;

@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head prefix="og: http://ogp.me/ns#">
+  <meta charset="utf-8">
+  <title>命名规范 | 代码和设计规范</title>
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- Canonical links -->
+  <link rel="canonical" href="http://docs.bmbstack.com/docs/backend/data_security.html">
+  <!-- Alternative links -->
+  
+    
+    <link rel="alternative" hreflang="zh-cn" href="http://docs.bmbstack.com/docs/backend/data_security.html">
+    
+    <link rel="alternative" hreflang="en" href="http://docs.bmbstack.com/en/docs/backend/data_security.html">
+    
+  
+  <!-- Icon -->
+  <link rel="apple-touch-icon" sizes="57x57" href="/img/apple-touch-icon-57x57.png">
+  <link rel="apple-touch-icon" sizes="114x114" href="/img/apple-touch-icon-114x114.png">
+  <link rel="apple-touch-icon" sizes="72x72" href="/img/apple-touch-icon-72x72.png">
+  <link rel="apple-touch-icon" sizes="144x144" href="/img/apple-touch-icon-144x144.png">
+  <link rel="apple-touch-icon" sizes="60x60" href="/img/apple-touch-icon-60x60.png">
+  <link rel="apple-touch-icon" sizes="120x120" href="/img/apple-touch-icon-120x120.png">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/apple-touch-icon-76x76.png">
+  <link rel="apple-touch-icon" sizes="152x152" href="/img/apple-touch-icon-152x152.png">
+  <link rel="icon" type="image/png" href="/img/favicon-196x196.png" sizes="196x196">
+  <link rel="icon" type="image/png" href="/img/favicon-160x160.png" sizes="160x160">
+  <link rel="icon" type="image/png" href="/img/favicon-96x96.png" sizes="96x96">
+  <link rel="icon" type="image/png" href="/img/favicon-16x16.png" sizes="16x16">
+  <link rel="icon" type="image/png" href="/img/favicon-32x32.png" sizes="32x32">
+  <meta name="msapplication-TileColor" content="#2f83cd">
+  <meta name="msapplication-TileImage" content="/img/mstile-144x144.png">
+  <!-- CSS -->
+  <!-- build:css css/dist.style.css -->
+  <link rel="stylesheet" href="/css/navy.css">
+  <!-- endbuild -->
+  <!-- RSS -->
+  <link rel="alternate" href="/atom.xml" title="代码和设计规范">
+  <!-- Open Graph -->
+  <meta name="description" content="前端,App与后端数据传输时，如何保证数据安全性
+数据安全性散列算法散列是信息的提炼，通常其长度要比信息小得多，且为一个固定长度。加密性强的散列一定是不可逆的，这就意味着通过散列结果，无法推出任何部分的原始信息。任何输入信息的变化，哪怕仅一位，都将导致散列结果的明显变化，这称之为雪崩效应。散列还应该是防冲突的，即找不出具有相同散列结果的两条信息。具有这些特性的散列结果就可以用于验证信息是否被修改。">
+<meta property="og:type" content="website">
+<meta property="og:title" content="命名规范">
+<meta property="og:url" content="http://docs.bmbstack.com/docs/backend/data_security.html">
+<meta property="og:site_name" content="代码和设计规范">
+<meta property="og:description" content="前端,App与后端数据传输时，如何保证数据安全性
+数据安全性散列算法散列是信息的提炼，通常其长度要比信息小得多，且为一个固定长度。加密性强的散列一定是不可逆的，这就意味着通过散列结果，无法推出任何部分的原始信息。任何输入信息的变化，哪怕仅一位，都将导致散列结果的明显变化，这称之为雪崩效应。散列还应该是防冲突的，即找不出具有相同散列结果的两条信息。具有这些特性的散列结果就可以用于验证信息是否被修改。">
+<meta property="og:image" content="http://i.imgur.com/w02MJ76.png">
+<meta property="og:image" content="http://i.imgur.com/fypApom.png">
+<meta property="og:image" content="http://i.imgur.com/wsPD85E.png">
+<meta property="og:updated_time" content="2016-07-16T01:07:27.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="命名规范">
+<meta name="twitter:description" content="前端,App与后端数据传输时，如何保证数据安全性
+数据安全性散列算法散列是信息的提炼，通常其长度要比信息小得多，且为一个固定长度。加密性强的散列一定是不可逆的，这就意味着通过散列结果，无法推出任何部分的原始信息。任何输入信息的变化，哪怕仅一位，都将导致散列结果的明显变化，这称之为雪崩效应。散列还应该是防冲突的，即找不出具有相同散列结果的两条信息。具有这些特性的散列结果就可以用于验证信息是否被修改。">
+<meta name="twitter:image" content="http://i.imgur.com/w02MJ76.png">
+<meta name="twitter:site" content="wangmingjob">
+<meta property="fb:admins" content="100000247608790">
+  <!-- Swiftype -->
+  <meta class="swiftype" name="title" data-type="string" content="命名规范">
+  <!-- Baidu Analytics -->
+  
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "//hm.baidu.com/hm.js?bb4b770d7fdf4e05245cd1327199d813";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+
+
+  <script>
+    var App = {
+        root:'/'    
+    };
+  </script>
+</head>
+
+<body>
+<div class="root">
+  <div id="container" class="container">
+    <header id="header" class="wrapper header">
+  <div id="header-inner" class="inner header-inner">
+    <h1 id="logo-wrap" class="logo-wrap">
+      <a href="/index.html" id="logo" class="logo">前端代码规范</a>
+    </h1>
+    <nav id="main-nav" class="main-nav">
+      <ul>
+        <li class="main-nav-item"><a href="/docs/" class="main-nav-link">文档</a></li><li class="main-nav-item"><a href="/news/" class="main-nav-link">博客</a></li>
+        <li class="main-nav-item">
+          <a href="https://github.com/bmbstack/docs" class="main-nav-link"><i class="fa fa-github-alt"></i></a>
+        </li>
+      </ul>
+    </nav>
+    <div id="lang-select-wrap" class="lang-select-wrap">
+      <label id="lang-select-label" class="lang-select-label"><i class="fa fa-globe"></i><span>简体中文</span></label>
+      <select id="lang-select" data-canonical="docs/backend/data_security.html" class="lang-select">
+        
+          <option value="zh-cn" selected>简体中文</option>
+        
+          <option value="en">English</option>
+        
+      </select>
+    </div>
+    <div id="search-btn-wrap" class="main-nav-item search-btn-wrap">
+      <a id="search-btn" class="main-nav-link st-search-launcher search-btn"><i class="fa fa-search"></i></a>
+    </div>
+    <a id="mobile-nav-toggle" class="mobile-nav-toggle">
+      <span class="mobile-nav-toggle-bar"></span>
+      <span class="mobile-nav-toggle-bar"></span>
+      <span class="mobile-nav-toggle-bar"></span>
+    </a>
+    <a id="mobile-search-btn" class="st-search-launcher mobile-search-btn"></a>
+  </div>
+</header>
+
+    <div id="content-wrap" class="content-wrap">
+  <div id="content" class="wrapper">
+    <div id="content-inner" class="content-inner">
+      <article class="article-container" itemscope itemtype="http://schema.org/Article">
+        <div class="article-inner">
+          <div class="article">
+            <div class="inner">
+              <header class="article-header">
+                <h1 class="article-title" itemprop="name">命名规范</h1>
+                <a href="https://github.com/o2team/guide/edit/master/source/docs/backend/data_security.md" class="article-edit-link" title="改进本文"><i class="fa fa-pencil"></i></a>
+              </header>
+              <div class="article-content" itemprop="articleBody" data-swiftype-index="true">
+                <p>前端,App与后端数据传输时，如何保证数据安全性</p>
+<h3 id="数据安全性" class="article-heading"><a href="#数据安全性" class="headerlink" title="数据安全性"></a>数据安全性<a class="article-anchor" href="#数据安全性" aria-hidden="true"></a></h3><h4 id="散列算法" class="article-heading"><a href="#散列算法" class="headerlink" title="散列算法"></a>散列算法<a class="article-anchor" href="#散列算法" aria-hidden="true"></a></h4><p>散列是信息的提炼，通常其长度要比信息小得多，且为一个固定长度。加密性强的散列一定是不可逆的，这就意味着通过散列结果，无法推出任何部分的原始信息。任何输入信息的变化，哪怕仅一位，都将导致散列结果的明显变化，这称之为雪崩效应。散列还应该是防冲突的，即找不出具有相同散列结果的两条信息。具有这些特性的散列结果就可以用于验证信息是否被修改。<br>散列算法可以用来加密token生成签名， 以便token信息不暴露在网络同时还能验证登录的有效性。</p>
+<h5 id="md5" class="article-heading"><a href="#md5" class="headerlink" title="md5"></a>md5<a class="article-anchor" href="#md5" aria-hidden="true"></a></h5><p>全写： Message Digest Algorithm MD5（中文名为消息摘要算法第五版）</p>
+<p>输出： 128bit</p>
+<p>MD5算法具有以下特点：<br>1、压缩性：任意长度的数据，算出的MD5值长度都是固定的。<br>2、容易计算：从原数据计算出MD5值很容易。<br>3、抗修改性：对原数据进行任何改动，哪怕只修改1个字节，所得到的MD5值都有很大区别。<br>4、弱抗碰撞：已知原数据和其MD5值，想找到一个具有相同MD5值的数据（即伪造数据）是非常困难的。<br>5、强抗碰撞：想找到两个不同的数据，使它们具有相同的MD5值，是非常困难的。</p>
+<p>缺陷：<br>Md5一度被认为十分靠谱。<br>2004年8月17日的美国加州圣巴巴拉的国际密码学会议（Crypto’2004）上，来自中国山东大学的王小云教授做了破译MD5、HAVAL-128、 MD4和RIPEMD算法的报告，公布了MD系列算法的破解结果。<br>2009年，冯登国、谢涛二人利用差分攻击，将MD5的碰撞算法复杂度从王小云的2^42进一步降低到2^21，极端情况下甚至可以降低至2^10。仅仅2^21的复杂度意味着即便是在2008年的计算机上，也只要几秒便可以找到一对碰撞。<br>Md5已老， 在安全性要求较高的场合，不建议使用。</p>
+<h5 id="sha1" class="article-heading"><a href="#sha1" class="headerlink" title="sha1"></a>sha1<a class="article-anchor" href="#sha1" aria-hidden="true"></a></h5><p>全名： 安全哈希算法（Secure Hash Algorithm）<br>输出： 160bit</p>
+<p>2.2.1 与Md5比较</p>
+<p>相同点：<br>因为二者均由MD4导出，SHA-1和MD5彼此很相似。相应的，他们的强度和其他特性也是相似。<br>不同点：</p>
+<ol>
+<li>对强行攻击的安全性：最显著和最重要的区别是SHA-1摘要比MD5摘要长32 位。使用强行技术，产生任何一个报文使其摘要等于给定报摘要的难度对MD5是2^128数量级的操作，而对SHA-1则是2^160数量级的操作。这样，SHA-1对强行攻击有更大的强度。</li>
+<li>对密码分析的安全性：由于MD5的设计，易受密码分析的攻击，SHA-1显得不易受这样的攻击。</li>
+<li>速度：在相同的硬件上，SHA-1的运行速度比MD5慢。</li>
+</ol>
+<h5 id="加盐" class="article-heading"><a href="#加盐" class="headerlink" title="加盐"></a>加盐<a class="article-anchor" href="#加盐" aria-hidden="true"></a></h5><p>所谓加盐， 就是在原本需要加密的信息基础上，糅入其它内容salt。签名的生成就是一次加盐。</p>
+<h4 id="对称加密" class="article-heading"><a href="#对称加密" class="headerlink" title="对称加密"></a>对称加密<a class="article-anchor" href="#对称加密" aria-hidden="true"></a></h4><p>本系统使用对称加密对用户密码进行加密以及生成token字符串。</p>
+<h5 id="AuthCode加密" class="article-heading"><a href="#AuthCode加密" class="headerlink" title="AuthCode加密"></a>AuthCode加密<a class="article-anchor" href="#AuthCode加密" aria-hidden="true"></a></h5><p>AuthCode是康盛科技发明的加密方式， 开源产品Discuz的密码是用这个算法进行加密。但是有点遗憾，这个函数所有权属于康盛创想，并不能自由使用的。不知使用是否有风险？？</p>
+<h5 id="AES加密" class="article-heading"><a href="#AES加密" class="headerlink" title="AES加密"></a>AES加密<a class="article-anchor" href="#AES加密" aria-hidden="true"></a></h5><p>高级加密标准（英语：Advanced Encryption Standard，缩写：AES），在密码学中又称Rijndael加密法，是美国联邦政府采用的一种区块加密标准。这个标准用来替代原先的DES，已经被多方分析且广为全世界所使用。</p>
+<h4 id="非对称加密" class="article-heading"><a href="#非对称加密" class="headerlink" title="非对称加密"></a>非对称加密<a class="article-anchor" href="#非对称加密" aria-hidden="true"></a></h4><p>RSA是目前最有影响力的公钥加密算法，它能够抵抗到目前为止已知的绝大多数密码攻击，已被ISO推荐为公钥数据加密标准。RSA的安全基于大数分解的难度。其公钥和私钥是一对大素数（100到200位十进制数或更大）的函数。从一个公钥和密文恢复出明文的难度，等价于分解两个大素数之积（这是公认的数学难题）。<br>算法描述：<br>（1）选择一对不同的、足够大的素数p，q。<br>（2）计算n=pq。<br>（3）计算f(n)=(p-1)(q-1)，同时对p, q严加保密，不让任何人知道。<br>（4）找一个与f(n)互质的数e（公钥指数），且1&lt;e&lt;f(n)。<br>（5）计算d（私钥指数），使得de≡1 mod f(n)。这个公式也可以表达为d ≡e-1 mod f(n)<br>注，≡是数论中表示同余的符号。<br>（6）公钥KU=(e,n)，私钥KR=(d,n)。<br>（7）加密时，先将明文变换成0至n-1的一个整数M。若明文较长，可先分割成适当的组，然后再进行交换。设密文为C，则加密过程为：C=M^e mod n。<br>（8）解密过程为：M=C^d mod n。</p>
+<h4 id="前端-App与后端正确的数据传输方式" class="article-heading"><a href="#前端-App与后端正确的数据传输方式" class="headerlink" title="前端/App与后端正确的数据传输方式"></a>前端/App与后端正确的数据传输方式<a class="article-anchor" href="#前端-App与后端正确的数据传输方式" aria-hidden="true"></a></h4><p>粗略地分析， 登录机制主要分为登录验证、登录保持、登出三个部分。登录验证是指客户端提供用户名和密码，向服务器提出登录请求，服务器判断客户端是否可以登录并向客户端确认。 登录认保持是指客户端登录后， 服务器能够分辨出已登录的客户端，并为其持续提供登录权限的服务器。登出是指客户端主动退出登录状态。容易想到的方案是，客户端登录成功后， 服务器为其分配sessionId, 客户端随后每次请求资源时都带上sessionId。<br><img src="http://i.imgur.com/w02MJ76.png" alt="Imgur"></p>
+<h5 id="登录验证" class="article-heading"><a href="#登录验证" class="headerlink" title="登录验证"></a>登录验证<a class="article-anchor" href="#登录验证" aria-hidden="true"></a></h5><p>上述简易的登录验证策略存在明显的安全漏洞,需要优化。</p>
+<p>1.1.1 密码的传输</p>
+<p>客户端第一次发出登录请求时， 用户密码以明文的方式传输， 一旦被截获， 后果严重。因此密码需要加密，例如可采用RSA非对称加密。具体流程如下：</p>
+<p>客户端向服务器第一次发起登录请求（不传输用户名和密码）。<br>服务器利用RSA算法产生一对公钥和私钥。并保留私钥， 将公钥发送给客户端。<br>客户端收到公钥后， 加密用户密码， 向服务器发起第二次登录请求（传输用户名和加密后的密码）。<br>服务器利用保留的私钥对密文进行解密，得到真正的密码。<br>1.1.2 登录状态token</p>
+<p>再仔细核对上述登录流程， 我们发现服务器判断用户是否登录， 完全依赖于sessionId, 一旦其被截获， 黑客就能够模拟出用户的请求。于是我们需要引入token的概念： 用户登录成功后， 服务器不但为其分配了sessionId, 还分配了token， token是维持登录状态的关键秘密数据。在服务器向客户端发送的token数据，也需要加密。于是一次登录的细节再次扩展。</p>
+<ul>
+<li>客户端向服务器第一次发起登录请求（不传输用户名和密码）。</li>
+<li>服务器利用RSA算法产生一对公钥和私钥。并保留私钥， 将公钥发送给客户端。</li>
+<li>客户端收到公钥后， 加密用户密码，向服务器发送用户名和加密后的用户密码； 同时另外产生一对公钥和私钥，自己保留私钥, 向服务器发送公钥； 于是第二次登录请求传输了用户名和加密后的密码以及客户端生成的公钥。</li>
+<li>服务器利用保留的私钥对密文进行解密，得到真正的密码。 经过判断， 确定用户可以登录后，生成sessionId和token， 同时利用客户端发送的公钥，对token进行加密。最后将sessionId和加密后的token返还给客户端。</li>
+<li>客户端利用自己生成的私钥对token密文解密， 得到真正的token。</li>
+</ul>
+<p><img src="http://i.imgur.com/fypApom.png" alt="Imgur"></p>
+<h5 id="登录保持" class="article-heading"><a href="#登录保持" class="headerlink" title="登录保持"></a>登录保持<a class="article-anchor" href="#登录保持" aria-hidden="true"></a></h5><p>在最原始的方案中， 登录保持仅仅靠服务器生成的sessionId: 客户端的请求中带上sessionId, 如果服务器的redis中存在这个id，就认为请求来自相应的登录客户端。 但是只要sessionId被截获， 请求就可以为伪造， 存在安全隐患。</p>
+<p>引入token后，上述问题便可得到解决。 服务器将token和其它的一些变量， 利用散列加密算法得到签名后，连同sessionId一并发送给服务器； 服务器取出保存于服务器端的token,利用相同的法则生成校验签名， 如果客户端签名与服务器的校验签名一致， 就认为请求来自登录的客户端。</p>
+<p><img src="http://i.imgur.com/wsPD85E.png" alt="Imgur"></p>
+<h5 id="TOKEN失效" class="article-heading"><a href="#TOKEN失效" class="headerlink" title="TOKEN失效"></a>TOKEN失效<a class="article-anchor" href="#TOKEN失效" aria-hidden="true"></a></h5><p>用户登录出系统</p>
+<p>失效原理：<br>在服务器端的redis中删除相应key为session的键值对。</p>
+<h4 id="Token" class="article-heading"><a href="#Token" class="headerlink" title="Token"></a>Token<a class="article-anchor" href="#Token" aria-hidden="true"></a></h4><p>对于token的生成规则，目前已经有成熟的解决方案</p>
+<ul>
+<li><a href="https://jwt.io/" target="_blank" rel="external">https://jwt.io/</a></li>
+</ul>
+
+              </div>
+              <footer class="article-footer">
+                <time class="article-footer-updated" datetime="2016-07-16T01:07:27.000Z" itemprop="dateModified">上次更新：2016-07-16</time>
+                <a href="/docs/name/classname.html" class="article-footer-prev" title="ClassName 命名"><i class="fa fa-chevron-left"></i><span>上一页</span></a>
+              </footer>
+              
+
+
+
+            </div>
+          </div>
+          <aside class="article-toc" id="article-toc" role="navigation">
+            <div id="article-toc-inner" class="article-toc-inner">
+              <strong class="sidebar-title">目录</strong>
+              <ul class="nav toc-nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#数据安全性"><span class="nav-text">数据安全性</span></a><ul class="nav nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#散列算法"><span class="nav-text">散列算法</span></a><ul class="nav nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#md5"><span class="nav-text">md5</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#sha1"><span class="nav-text">sha1</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#加盐"><span class="nav-text">加盐</span></a></li></ul></li><li class="nav-item nav-level-4"><a class="nav-link" href="#对称加密"><span class="nav-text">对称加密</span></a><ul class="nav nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#AuthCode加密"><span class="nav-text">AuthCode加密</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#AES加密"><span class="nav-text">AES加密</span></a></li></ul></li><li class="nav-item nav-level-4"><a class="nav-link" href="#非对称加密"><span class="nav-text">非对称加密</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#前端-App与后端正确的数据传输方式"><span class="nav-text">前端/App与后端正确的数据传输方式</span></a><ul class="nav nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#登录验证"><span class="nav-text">登录验证</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#登录保持"><span class="nav-text">登录保持</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#TOKEN失效"><span class="nav-text">TOKEN失效</span></a></li></ul></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Token"><span class="nav-text">Token</span></a></li></ul></li></ul>
+              <a href="#" id="article-toc-top" class="article-toc-top">回到顶部</a>
+            </div>
+          </aside>
+        </div>
+      </article>
+      <aside id="sidebar" role="navigation" class="sidebar">
+  <div class="inner"><strong class="sidebar-title">开始阅读</strong><a href="/docs/index.html" class="sidebar-link">概述</a><strong class="sidebar-title">HTML规范</strong><a href="/docs/html/code.html" class="sidebar-link">代码规范</a><a href="/docs/html/note.html" class="sidebar-link">注释规范</a><a href="/docs/html/template.html" class="sidebar-link">文件模版</a><a href="/docs/html/webapp.html" class="sidebar-link">WebApp Meta</a><strong class="sidebar-title">图片规范</strong><a href="/docs/image/format.html" class="sidebar-link">图片格式</a><a href="/docs/image/size.html" class="sidebar-link">图片大小</a><a href="/docs/image/quality.html" class="sidebar-link">图片质量</a><a href="/docs/image/import.html" class="sidebar-link">图片引入</a><strong class="sidebar-title">CSS规范</strong><a href="/docs/css/code.html" class="sidebar-link">代码规范</a><a href="/docs/css/note.html" class="sidebar-link">注释规范</a><a href="/docs/css/sass.html" class="sidebar-link">SASS 规范</a><a href="/docs/css/reset.html" class="sidebar-link">重置样式</a><a href="/docs/css/query.html" class="sidebar-link">媒体查询</a><a href="/docs/css/webkit.html" class="sidebar-link">移动端常用私有属性</a><strong class="sidebar-title">命名规范</strong><a href="/docs/name/dir.html" class="sidebar-link">目录命名</a><a href="/docs/name/image.html" class="sidebar-link">图片命名</a><a href="/docs/name/htmlcss.html" class="sidebar-link">HTML/CSS 命名</a><a href="/docs/name/classname.html" class="sidebar-link">ClassName 命名</a><strong class="sidebar-title">后端规范</strong><a href="/docs/backend/data_security.html" class="sidebar-link current">数据传输的安全性</a></div>
+</aside>
+
+    </div>
+  </div>
+</div>
+
+    <footer id="footer" class="wrapper">
+  <div class="inner">
+    <div id="footer-copyright">
+      &copy; 2016 <a href="http://bmbstack.com/" target="_blank">Ripple团队</a><br>
+      Documentation licensed under <a href="http://creativecommons.org/licenses/by/4.0/" target="_blank">CC BY 4.0</a>.
+    </div>
+    <div id="footer-links">
+      <a href="https://twitter.com/wangmingjob" class="footer-link" target="_blank"><i class="fa fa-twitter"></i></a>
+      <a href="https://github.com/bmbstack/docs" class="footer-link" target="_blank"><i class="fa fa-github-alt"></i></a>
+    </div>
+  </div>
+</footer>
+
+  </div>
+  <div id="mobile-nav-dimmer" class="mobile-nav-dimmer"></div>
+  <nav id="mobile-nav" class="mobile-nav">
+  <div id="mobile-nav-inner" class="mobile-nav-inner">
+    <ul id="mobile-nav-list" class="mobile-nav-list">
+      <li class="mobile-nav-item"><a href="/docs/" class="mobile-nav-link">文档</a></li><li class="mobile-nav-item"><a href="/news/" class="mobile-nav-link">博客</a></li>
+      <li class="mobile-nav-item">
+        <a href="https://github.com/bmbstack/docs" class="mobile-nav-link" rel="external" target="_blank">GitHub</a>
+      </li>
+    </ul>
+    
+      <strong class="mobile-nav-title">开始阅读</strong><a href="/docs/index.html" class="mobile-nav-link">概述</a><strong class="mobile-nav-title">HTML规范</strong><a href="/docs/html/code.html" class="mobile-nav-link">代码规范</a><a href="/docs/html/note.html" class="mobile-nav-link">注释规范</a><a href="/docs/html/template.html" class="mobile-nav-link">文件模版</a><a href="/docs/html/webapp.html" class="mobile-nav-link">WebApp Meta</a><strong class="mobile-nav-title">图片规范</strong><a href="/docs/image/format.html" class="mobile-nav-link">图片格式</a><a href="/docs/image/size.html" class="mobile-nav-link">图片大小</a><a href="/docs/image/quality.html" class="mobile-nav-link">图片质量</a><a href="/docs/image/import.html" class="mobile-nav-link">图片引入</a><strong class="mobile-nav-title">CSS规范</strong><a href="/docs/css/code.html" class="mobile-nav-link">代码规范</a><a href="/docs/css/note.html" class="mobile-nav-link">注释规范</a><a href="/docs/css/sass.html" class="mobile-nav-link">SASS 规范</a><a href="/docs/css/reset.html" class="mobile-nav-link">重置样式</a><a href="/docs/css/query.html" class="mobile-nav-link">媒体查询</a><a href="/docs/css/webkit.html" class="mobile-nav-link">移动端常用私有属性</a><strong class="mobile-nav-title">命名规范</strong><a href="/docs/name/dir.html" class="mobile-nav-link">目录命名</a><a href="/docs/name/image.html" class="mobile-nav-link">图片命名</a><a href="/docs/name/htmlcss.html" class="mobile-nav-link">HTML/CSS 命名</a><a href="/docs/name/classname.html" class="mobile-nav-link">ClassName 命名</a><strong class="mobile-nav-title">后端规范</strong><a href="/docs/backend/data_security.html" class="mobile-nav-link current">数据传输的安全性</a>
+    
+  </div>
+  <div id="mobile-lang-select-wrap" class="mobile-lang-select-wrap">
+    <span id="mobile-lang-select-label" class="mobile-lang-select-label"><i class="fa fa-globe"></i><span>简体中文</span></span>
+    <select id="mobile-lang-select" data-canonical="docs/backend/data_security.html" class="mobile-lang-select">
+      
+        <option value="zh-cn" selected>简体中文</option>
+      
+        <option value="en">English</option>
+      
+    </select>
+  </div>
+</nav>
+
+  <!-- Scripts -->
+<!-- build:js js/dist.main.js -->
+<script src="/js/jquery.js"></script>
+<script src="/js/hammer.js"></script>
+<script src="/assets/bootstrap/js/bootstrap.js"></script>
+<script src="/js/lang_select.js"></script>
+<script src="/js/toc.js"></script>
+<script src="/js/mobile_nav.js"></script>
+<!-- endbuild -->
+
+<!-- Swiftype -->
+<script type="text/javascript">
+  (function(w,d,t,u,n,s,e){w['SwiftypeObject']=n;w[n]=w[n]||function(){
+  (w[n].q=w[n].q||[]).push(arguments);};s=d.createElement(t);
+  e=d.getElementsByTagName(t)[0];s.async=1;s.src=u;e.parentNode.insertBefore(s,e);
+  })(window,document,'script','//s.swiftypecdn.com/install/v1/st.js','_st');
+
+  _st('install','nxhXzi1rDss_9_P_6zBa');
+</script>
+
+</div>
+</body>
+</html>

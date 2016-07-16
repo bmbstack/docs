@@ -2,7 +2,7 @@ title: 贡献
 ---
 ## 完善
 
-[凹凸实验室](http://aotu.io) 的宗旨是 `面向开放 - Open Oriented`，所以十分欢迎大家一起参与完善我们的`全栈MAC装机指南`。本文档将帮助大家了解参与的具体过程。
+[Ripple团队](http://bmbstack.com) 的宗旨是 `面向开放 - Open Oriented`，所以十分欢迎大家一起参与完善我们的`全栈MAC装机指南`。本文档将帮助大家了解参与的具体过程。
 
 ### 开始之前
 
@@ -55,7 +55,7 @@ npm i -g hexo-cli
 
 ## 问题反馈
 
-在使用`全栈MAC装机指南`过程中碰到任何问题，可以到 [GitHub](https://github.com/o2team/mac/issues) 上留言提问。
+在使用`全栈MAC装机指南`过程中碰到任何问题，可以到 [GitHub](https://github.com/bmbstack/docs/issues) 上留言提问。
 
 [o2team/mac]: https://github.com/o2team/mac
 
@@ -63,5 +63,4 @@ npm i -g hexo-cli
 
 排名不分先后。
 
-- [mamboer](https://github.com/mamboer)
-- [cnt1992](https://github.com/cnt1992)
+- [wangmingjob](https://github.com/wangmingjob)
