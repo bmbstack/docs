@@ -3351,7 +3351,6 @@ a.article-title:hover {
   -moz-transform-origin: 0;
   -ms-transform-origin: 0;
   transform-origin: 0;
-  -webkit-border-radius: 2px;
   border-radius: 2px;
 }
 .mobile-nav-toggle-bar:first-child {
@@ -3400,7 +3399,6 @@ a.article-title:hover {
 .mobile-search-btn:before {
   width: 18px;
   height: 18px;
-  -webkit-border-radius: 50%;
   border-radius: 50%;
   border: 2px solid #fff;
   top: 0;
@@ -3412,7 +3410,6 @@ a.article-title:hover {
   background: #fff;
   top: 15px;
   right: 0;
-  -webkit-border-radius: 2px;
   border-radius: 2px;
   -webkit-transform: rotate(45deg);
   -moz-transform: rotate(45deg);
