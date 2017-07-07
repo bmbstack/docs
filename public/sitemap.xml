@@ -2,6 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://docs.bmbstack.com/index.html</loc>
+    
+    <lastmod>2017-07-07T04:39:34.167Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://docs.bmbstack.com/docs/css/sass.html</loc>
     
     <lastmod>2017-07-05T09:43:47.047Z</lastmod>
@@ -10,13 +17,6 @@
   
   <url>
     <loc>http://docs.bmbstack.com/docs/name/jdc_fd_guide_name.html</loc>
-    
-    <lastmod>2017-07-05T09:43:47.047Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://docs.bmbstack.com/index.html</loc>
     
     <lastmod>2017-07-05T09:43:47.047Z</lastmod>
     

@@ -1,11 +1,11 @@
 title: 概述
 ---
-欢迎使用`bmbstack团队代码和设计规范`，使用过程中如碰到问题，请到[Github](https://github.com/bmbstack/docs/issues)进行提问。
+欢迎使用`Bmbstack团队代码和设计规范`，使用过程中如碰到问题，请到[Github](https://github.com/bmbstack/docs/issues)进行提问。
 
 
 ## 关于
 
-`bmbstack代码和设计规范` 是由 [Ripple团队](http://bmbstack.com) 整理的，基于 [W3C](http://www.w3.org/)、[苹果开发者](https://developer.apple.com/) 等官方文档，并结合团队日常业务需求以及团队在日常开发过程中总结提炼出的经验而制定。
+`Bmbstack代码和设计规范` 是由 [Bmbstack团队](http://bmbstack.istormcity.com) 整理的，基于 [W3C](http://www.w3.org/)、[苹果开发者](https://developer.apple.com/) 等官方文档，并结合团队日常业务需求以及团队在日常开发过程中总结提炼出的经验而制定。
 
 旨在增强团队开发协作、提高代码质量和打造开发基石的编码规范，
 
