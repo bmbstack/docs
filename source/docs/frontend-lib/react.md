@@ -1,4 +1,4 @@
-title: React 一个用户构建用户界面的库
+title: React 一个构建用户界面的库
 ---
 
 ## 组件、组件实例、元素
@@ -101,3 +101,111 @@ const DeleteAccount = () => (
 );
 
 ```
+> **这种混搭模式能保持组件之间相互解耦，因为可以通过组合唯一地表达 `is-a` 和 `has-a` 两种关系**
+
+Button 是一个有指定属性的 DOM `button` 元素
+DangerButton 是一个有指定属性的 `Button` 元素
+DeleteAccount 在一个 <div> 内包含了 `Button` 和 `DangerButton` 元素
+
+当 React 看见一个元素的类型是函数或者类的时候，它知道去问那个组件会渲染出什么元素，并安排好对应的属性。
+
+当它看见这样的元素时：
+
+```JavaScript
+{
+  type: Button,
+  props: {
+    color: 'blue',
+    children: 'OK!'
+  }
+}
+```
+React 将会询问 Button 渲染出什么元素，然后 Button 就会返回这个元素：
+
+```JavaScript
+{
+  type: 'button',
+  props: {
+      className: 'button button-blue',
+      children: {
+        type: 'b',
+        props: {
+            children: 'OK!'
+        }
+      }
+  }
+}
+
+```
+React 会不断重复这个过程，直到知道页面中每一个组件最根本的 DOM 标签元素为止。
+
+**组件可以是类或者函数**
+
+可以写成函数的形式，也可以是继承于 React.Component 的类。下面三种声明一个组件的方式大部分是等价的：
+```JavaScript
+// 1) As a function of props
+const Button = ({ children, color  }) => ({
+  type: 'button',
+  props: {
+      className: 'button button-' + color,
+      children: {
+        type: 'b',
+        props: {
+            children: children
+        }
+      }
+  }
+});
+
+// 2) Using the React.createClass() factory
+const Button = React.createClass({
+    render() {
+        const { children, color  } = this.props;
+        return {
+          type: 'button',
+          props: {
+                className: 'button button-' + color,
+                children: {
+                    type: 'b',
+                    props: {
+                        children: children
+                    }
+                }
+          }
+        };
+   }
+});
+
+// 3) As an ES6 class descending from React.Component
+class Button extends React.Component {
+    render() {
+        const { children, color  } = this.props;
+        return {
+          type: 'button',
+          props: {
+            className: 'button button-' + color,
+            children: {
+                type: 'b',
+                props: {
+                    children: children
+                }
+            }
+          }
+        };
+   }
+}
+
+```
+当一个组件被声明为一个类时，它比函数式组件稍微强大一些，因为可以保存一些本地状态以及在生命周期函数内执行自定义逻辑等。函数式组件没那么强大，但胜在简单，它就像一个只有 render() 方法的组件类。除非你需要那些类才能提供的特性，否则用函数式组件就好了。
+
+React 会首先询问**父组件**它会返回什么形式的元素树，并配齐需要的属性。它会逐步把你的元素树分解成更小的颗粒。这个过程被 React 称为调度，这个过程始于你调用 ReactDOM.render() 或者 setState() 。在调度结束时，React 就能获得整棵 DOM 树，然后 react-don 或者 react-native 这样的渲染器将在需要更新的时候执行最少的 DOM 操作。
+这个逐步提炼的过程正是 React APP 易于优化的原因，如果组件树的某些部分规模太大，React 访问效率不高，那么你可以告诉 React 如果属性没有变化就略过这部分组件树的提炼操作。当属性是不可变的数据时，可以很快判断它是否发生变化。因此，React 和不可变数据是一对天生的好基友，对于优化性能有事半功倍的效果。
+
+> 元素就是一个用语描述出现在页面中的 DOM 节点或者 React 组件的纯对象。元素可以在自己的属性中包含其它元素。创建一个元素的成本很低，一旦元素被创建之后，就不再发生变化。
+> React 组件可以用好几种方式声明，可以是一个包含 render() 方法的类，也可以是一个简单的函数，不管怎么样，它都是以属性作为输入，返回元素树作为输出。
+> 当一个组件被注入一些属性值时，属性值来源于它的父级元素，所以人们常说，属性在 React 中是单向流动的：从父级到子元素。
+> 所谓的实例，就是你在组件类中用 this 引用的那个对象，对于保存本地状态以及介入生命周期函数是有用的。
+> 函数式组件没有实例，类组件才有，但你从来不需要手动创建，React 会帮你搞定。
+
+
+

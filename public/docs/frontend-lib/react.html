@@ -2,7 +2,7 @@
 <html lang="zh-cn">
 <head prefix="og: http://ogp.me/ns#">
   <meta charset="utf-8">
-  <title>React 一个用户构建用户界面的库 | 代码和设计规范</title>
+  <title>React 一个构建用户界面的库 | 代码和设计规范</title>
   <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <!-- Canonical links -->
@@ -40,18 +40,18 @@
   <!-- Open Graph -->
   <meta name="description" content="组件、组件实例、元素通常一个组件在页面中会产生多个组件实例，每个组件实例都有各自的属性props和状态state，当一个组件中包含了其他组件，也就是组件嵌套场景，通常的处理办法会像backbone一样，在父组件中创建这个子组件，并持有这个组件的引用，也就是会在适当的时候去创建、更新、销毁组件，那么当代码规模随着组件复杂度和组件状态复杂度变大时，这个组件的可维护性就会变差，进而增大组件间的耦合度，无">
 <meta property="og:type" content="website">
-<meta property="og:title" content="React 一个用户构建用户界面的库">
+<meta property="og:title" content="React 一个构建用户界面的库">
 <meta property="og:url" content="http://docs.bmbstack.com/docs/frontend-lib/react.html">
 <meta property="og:site_name" content="代码和设计规范">
 <meta property="og:description" content="组件、组件实例、元素通常一个组件在页面中会产生多个组件实例，每个组件实例都有各自的属性props和状态state，当一个组件中包含了其他组件，也就是组件嵌套场景，通常的处理办法会像backbone一样，在父组件中创建这个子组件，并持有这个组件的引用，也就是会在适当的时候去创建、更新、销毁组件，那么当代码规模随着组件复杂度和组件状态复杂度变大时，这个组件的可维护性就会变差，进而增大组件间的耦合度，无">
-<meta property="og:updated_time" content="2017-07-28T07:29:36.638Z">
+<meta property="og:updated_time" content="2017-07-28T08:43:21.481Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="React 一个用户构建用户界面的库">
+<meta name="twitter:title" content="React 一个构建用户界面的库">
 <meta name="twitter:description" content="组件、组件实例、元素通常一个组件在页面中会产生多个组件实例，每个组件实例都有各自的属性props和状态state，当一个组件中包含了其他组件，也就是组件嵌套场景，通常的处理办法会像backbone一样，在父组件中创建这个子组件，并持有这个组件的引用，也就是会在适当的时候去创建、更新、销毁组件，那么当代码规模随着组件复杂度和组件状态复杂度变大时，这个组件的可维护性就会变差，进而增大组件间的耦合度，无">
 <meta name="twitter:site" content="wangmingjob">
 <meta property="fb:admins" content="100000247608790">
   <!-- Swiftype -->
-  <meta class="swiftype" name="title" data-type="string" content="React 一个用户构建用户界面的库">
+  <meta class="swiftype" name="title" data-type="string" content="React 一个构建用户界面的库">
   <!-- Baidu Analytics -->
   
 <script>
@@ -118,7 +118,7 @@ var _hmt = _hmt || [];
           <div class="article">
             <div class="inner">
               <header class="article-header">
-                <h1 class="article-title" itemprop="name">React 一个用户构建用户界面的库</h1>
+                <h1 class="article-title" itemprop="name">React 一个构建用户界面的库</h1>
                 <a href="https://github.com/bmbstack/docs/edit/master/source/docs/frontend-lib/react.md" class="article-edit-link" title="改进本文"><i class="fa fa-pencil"></i></a>
               </header>
               <div class="article-content" itemprop="articleBody" data-swiftype-index="true">
@@ -147,10 +147,27 @@ var _hmt = _hmt || [];
 <p>一个描述组件的元素也属于元素的范畴，就像一个描述 DOM 节点的元素一样，它们可以互相嵌套混搭使用。<br>在一棵 DOM 树中，可以混合使用匹配 DOM 节点或者 React 组件的元素。<br><figure class="highlight javascript"><table><tr><td class="code"><pre><div class="line"><span class="keyword">const</span> DeleteAccount = <span class="function"><span class="params">()</span> =&gt;</span> (&#123;</div><div class="line">  <span class="attr">type</span>: <span class="string">'div'</span>,</div><div class="line">  <span class="attr">props</span>: &#123;</div><div class="line">  <span class="attr">children</span>: [&#123;</div><div class="line">        <span class="attr">type</span>: <span class="string">'p'</span>,</div><div class="line">        <span class="attr">props</span>: &#123;</div><div class="line">            <span class="attr">children</span>: <span class="string">'Are you sure?'</span></div><div class="line">        &#125;</div><div class="line">            </div><div class="line">    &#125;, &#123;</div><div class="line">        <span class="attr">type</span>: DangerButton,</div><div class="line">        <span class="attr">props</span>: &#123;</div><div class="line">            <span class="attr">children</span>: <span class="string">'Yep'</span></div><div class="line">        &#125;</div><div class="line">    &#125;, &#123;</div><div class="line">        <span class="attr">type</span>: Button,</div><div class="line">        <span class="attr">props</span>: &#123;</div><div class="line">            <span class="attr">color</span>: <span class="string">'blue'</span>,</div><div class="line">            <span class="attr">children</span>: <span class="string">'Cancel'</span></div><div class="line">        &#125;</div><div class="line">    &#125;]</div><div class="line">  &#125;);</div><div class="line">&#125;)</div></pre></td></tr></table></figure></p>
 <p>如果喜欢 jsx，还可以写成下面形式：</p>
 <figure class="highlight javascript"><table><tr><td class="code"><pre><div class="line"><span class="keyword">const</span> DeleteAccount = <span class="function"><span class="params">()</span> =&gt;</span> (</div><div class="line">  <span class="xml"><span class="tag">&lt;<span class="name">div</span>&gt;</span></span></div><div class="line">    <span class="tag">&lt;<span class="name">p</span>&gt;</span>Are you sure?<span class="tag">&lt;/<span class="name">p</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">DangerButton</span>&gt;</span>Yep<span class="tag">&lt;/<span class="name">DangerButton</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">Button</span> <span class="attr">color</span>=<span class="string">'blue'</span>&gt;</span>Cancel<span class="tag">&lt;/<span class="name">Button</span>&gt;</span></div><div class="line">  <span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line">);</div></pre></td></tr></table></figure>
+<blockquote>
+<p><strong>这种混搭模式能保持组件之间相互解耦，因为可以通过组合唯一地表达 <code>is-a</code> 和 <code>has-a</code> 两种关系</strong></p>
+</blockquote>
+<p>Button 是一个有指定属性的 DOM <code>button</code> 元素<br>DangerButton 是一个有指定属性的 <code>Button</code> 元素<br>DeleteAccount 在一个 <div> 内包含了 <code>Button</code> 和 <code>DangerButton</code> 元素</div></p>
+<p>当 React 看见一个元素的类型是函数或者类的时候，它知道去问那个组件会渲染出什么元素，并安排好对应的属性。</p>
+<p>当它看见这样的元素时：</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><div class="line">&#123;</div><div class="line">  <span class="attr">type</span>: Button,</div><div class="line">  <span class="attr">props</span>: &#123;</div><div class="line">    <span class="attr">color</span>: <span class="string">'blue'</span>,</div><div class="line">    <span class="attr">children</span>: <span class="string">'OK!'</span></div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>React 将会询问 Button 渲染出什么元素，然后 Button 就会返回这个元素：</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><div class="line">&#123;</div><div class="line">  <span class="attr">type</span>: <span class="string">'button'</span>,</div><div class="line">  <span class="attr">props</span>: &#123;</div><div class="line">      <span class="attr">className</span>: <span class="string">'button button-blue'</span>,</div><div class="line">      <span class="attr">children</span>: &#123;</div><div class="line">        <span class="attr">type</span>: <span class="string">'b'</span>,</div><div class="line">        <span class="attr">props</span>: &#123;</div><div class="line">            <span class="attr">children</span>: <span class="string">'OK!'</span></div><div class="line">        &#125;</div><div class="line">      &#125;</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>React 会不断重复这个过程，直到知道页面中每一个组件最根本的 DOM 标签元素为止。</p>
+<p><strong>组件可以是类或者函数</strong></p>
+<p>可以写成函数的形式，也可以是继承于 React.Component 的类。下面三种声明一个组件的方式大部分是等价的：<br><figure class="highlight javascript"><table><tr><td class="code"><pre><div class="line"><span class="comment">// 1) As a function of props</span></div><div class="line"><span class="keyword">const</span> Button = <span class="function">(<span class="params">&#123; children, color  &#125;</span>) =&gt;</span> (&#123;</div><div class="line">  <span class="attr">type</span>: <span class="string">'button'</span>,</div><div class="line">  <span class="attr">props</span>: &#123;</div><div class="line">      <span class="attr">className</span>: <span class="string">'button button-'</span> + color,</div><div class="line">      <span class="attr">children</span>: &#123;</div><div class="line">        <span class="attr">type</span>: <span class="string">'b'</span>,</div><div class="line">        <span class="attr">props</span>: &#123;</div><div class="line">            <span class="attr">children</span>: children</div><div class="line">        &#125;</div><div class="line">      &#125;</div><div class="line">  &#125;</div><div class="line">&#125;);</div><div class="line"></div><div class="line"><span class="comment">// 2) Using the React.createClass() factory</span></div><div class="line"><span class="keyword">const</span> Button = React.createClass(&#123;</div><div class="line">    render() &#123;</div><div class="line">        <span class="keyword">const</span> &#123; children, color  &#125; = <span class="keyword">this</span>.props;</div><div class="line">        <span class="keyword">return</span> &#123;</div><div class="line">          <span class="attr">type</span>: <span class="string">'button'</span>,</div><div class="line">          <span class="attr">props</span>: &#123;</div><div class="line">                <span class="attr">className</span>: <span class="string">'button button-'</span> + color,</div><div class="line">                <span class="attr">children</span>: &#123;</div><div class="line">                    <span class="attr">type</span>: <span class="string">'b'</span>,</div><div class="line">                    <span class="attr">props</span>: &#123;</div><div class="line">                        <span class="attr">children</span>: children</div><div class="line">                    &#125;</div><div class="line">                &#125;</div><div class="line">          &#125;</div><div class="line">        &#125;;</div><div class="line">   &#125;</div><div class="line">&#125;);</div><div class="line"></div><div class="line"><span class="comment">// 3) As an ES6 class descending from React.Component</span></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Button</span> <span class="keyword">extends</span> <span class="title">React</span>.<span class="title">Component</span> </span>&#123;</div><div class="line">    render() &#123;</div><div class="line">        <span class="keyword">const</span> &#123; children, color  &#125; = <span class="keyword">this</span>.props;</div><div class="line">        <span class="keyword">return</span> &#123;</div><div class="line">          <span class="attr">type</span>: <span class="string">'button'</span>,</div><div class="line">          <span class="attr">props</span>: &#123;</div><div class="line">            <span class="attr">className</span>: <span class="string">'button button-'</span> + color,</div><div class="line">            <span class="attr">children</span>: &#123;</div><div class="line">                <span class="attr">type</span>: <span class="string">'b'</span>,</div><div class="line">                <span class="attr">props</span>: &#123;</div><div class="line">                    <span class="attr">children</span>: children</div><div class="line">                &#125;</div><div class="line">            &#125;</div><div class="line">          &#125;</div><div class="line">        &#125;;</div><div class="line">   &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>当一个组件被声明为一个类时，它比函数式组件稍微强大一些，因为可以保存一些本地状态以及在生命周期函数内执行自定义逻辑等。函数式组件没那么强大，但胜在简单，它就像一个只有 render() 方法的组件类。除非你需要那些类才能提供的特性，否则用函数式组件就好了。</p>
+<p>React 会首先询问<strong>父组件</strong>它会返回什么形式的元素树，并配齐需要的属性。它会逐步把你的元素树分解成更小的颗粒。这个过程被 React 称为调度，这个过程始于你调用 ReactDOM.render() 或者 setState() 。在调度结束时，React 就能获得整棵 DOM 树，然后 react-don 或者 react-native 这样的渲染器将在需要更新的时候执行最少的 DOM 操作。<br>这个逐步提炼的过程正是 React APP 易于优化的原因，如果组件树的某些部分规模太大，React 访问效率不高，那么你可以告诉 React 如果属性没有变化就略过这部分组件树的提炼操作。当属性是不可变的数据时，可以很快判断它是否发生变化。因此，React 和不可变数据是一对天生的好基友，对于优化性能有事半功倍的效果。</p>
+<blockquote>
+<p>元素就是一个用语描述出现在页面中的 DOM 节点或者 React 组件的纯对象。元素可以在自己的属性中包含其它元素。创建一个元素的成本很低，一旦元素被创建之后，就不再发生变化。<br>React 组件可以用好几种方式声明，可以是一个包含 render() 方法的类，也可以是一个简单的函数，不管怎么样，它都是以属性作为输入，返回元素树作为输出。<br>当一个组件被注入一些属性值时，属性值来源于它的父级元素，所以人们常说，属性在 React 中是单向流动的：从父级到子元素。<br>所谓的实例，就是你在组件类中用 this 引用的那个对象，对于保存本地状态以及介入生命周期函数是有用的。<br>函数式组件没有实例，类组件才有，但你从来不需要手动创建，React 会帮你搞定。</p>
+</blockquote>
 
               </div>
               <footer class="article-footer">
-                <time class="article-footer-updated" datetime="2017-07-28T07:29:36.638Z" itemprop="dateModified">上次更新：2017-07-28</time>
+                <time class="article-footer-updated" datetime="2017-07-28T08:43:21.481Z" itemprop="dateModified">上次更新：2017-07-28</time>
                 <a href="/docs/css/webkit.html" class="article-footer-prev" title="移动端常用私有属性"><i class="fa fa-chevron-left"></i><span>上一页</span></a><a href="/docs/frontend-lib/redux.html" class="article-footer-next" title="redux"><span>下一页</span><i class="fa fa-chevron-right"></i></a>
               </footer>
               
