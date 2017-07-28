@@ -18,6 +18,9 @@ docs:
     css_reset: css/reset.html
     css_query: css/query.html
     css_webkit: css/webkit.html
+  frontend-lib:
+    react: frontend-lib/react.html
+    redux: frontend-lib/redux.html
   name:
     name_dir: name/dir.html
     name_image: name/image.html

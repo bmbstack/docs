@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head prefix="og: http://ogp.me/ns#">
+  <meta charset="utf-8">
+  <title>React 一个用户构建用户界面的库 | 代码和设计规范</title>
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- Canonical links -->
+  <link rel="canonical" href="http://docs.bmbstack.com/docs/frontend-lib/react.html">
+  <!-- Alternative links -->
+  
+    
+    <link rel="alternative" hreflang="zh-cn" href="http://docs.bmbstack.com/docs/frontend-lib/react.html">
+    
+    <link rel="alternative" hreflang="en" href="http://docs.bmbstack.com/en/docs/frontend-lib/react.html">
+    
+  
+  <!-- Icon -->
+  <link rel="apple-touch-icon" sizes="57x57" href="/img/apple-touch-icon-57x57.png">
+  <link rel="apple-touch-icon" sizes="114x114" href="/img/apple-touch-icon-114x114.png">
+  <link rel="apple-touch-icon" sizes="72x72" href="/img/apple-touch-icon-72x72.png">
+  <link rel="apple-touch-icon" sizes="144x144" href="/img/apple-touch-icon-144x144.png">
+  <link rel="apple-touch-icon" sizes="60x60" href="/img/apple-touch-icon-60x60.png">
+  <link rel="apple-touch-icon" sizes="120x120" href="/img/apple-touch-icon-120x120.png">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/apple-touch-icon-76x76.png">
+  <link rel="apple-touch-icon" sizes="152x152" href="/img/apple-touch-icon-152x152.png">
+  <link rel="icon" type="image/png" href="/img/favicon-196x196.png" sizes="196x196">
+  <link rel="icon" type="image/png" href="/img/favicon-160x160.png" sizes="160x160">
+  <link rel="icon" type="image/png" href="/img/favicon-96x96.png" sizes="96x96">
+  <link rel="icon" type="image/png" href="/img/favicon-16x16.png" sizes="16x16">
+  <link rel="icon" type="image/png" href="/img/favicon-32x32.png" sizes="32x32">
+  <meta name="msapplication-TileColor" content="#2f83cd">
+  <meta name="msapplication-TileImage" content="/img/mstile-144x144.png">
+  <!-- CSS -->
+  <!-- build:css css/dist.style.css -->
+  <link rel="stylesheet" href="/css/navy.css">
+  <!-- endbuild -->
+  <!-- RSS -->
+  <link rel="alternate" href="/atom.xml" title="代码和设计规范">
+  <!-- Open Graph -->
+  <meta name="description" content="组件、组件实例、元素通常一个组件在页面中会产生多个组件实例，每个组件实例都有各自的属性props和状态state，当一个组件中包含了其他组件，也就是组件嵌套场景，通常的处理办法会像backbone一样，在父组件中创建这个子组件，并持有这个组件的引用，也就是会在适当的时候去创建、更新、销毁组件，那么当代码规模随着组件复杂度和组件状态复杂度变大时，这个组件的可维护性就会变差，进而增大组件间的耦合度，无">
+<meta property="og:type" content="website">
+<meta property="og:title" content="React 一个用户构建用户界面的库">
+<meta property="og:url" content="http://docs.bmbstack.com/docs/frontend-lib/react.html">
+<meta property="og:site_name" content="代码和设计规范">
+<meta property="og:description" content="组件、组件实例、元素通常一个组件在页面中会产生多个组件实例，每个组件实例都有各自的属性props和状态state，当一个组件中包含了其他组件，也就是组件嵌套场景，通常的处理办法会像backbone一样，在父组件中创建这个子组件，并持有这个组件的引用，也就是会在适当的时候去创建、更新、销毁组件，那么当代码规模随着组件复杂度和组件状态复杂度变大时，这个组件的可维护性就会变差，进而增大组件间的耦合度，无">
+<meta property="og:updated_time" content="2017-07-28T07:29:36.638Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="React 一个用户构建用户界面的库">
+<meta name="twitter:description" content="组件、组件实例、元素通常一个组件在页面中会产生多个组件实例，每个组件实例都有各自的属性props和状态state，当一个组件中包含了其他组件，也就是组件嵌套场景，通常的处理办法会像backbone一样，在父组件中创建这个子组件，并持有这个组件的引用，也就是会在适当的时候去创建、更新、销毁组件，那么当代码规模随着组件复杂度和组件状态复杂度变大时，这个组件的可维护性就会变差，进而增大组件间的耦合度，无">
+<meta name="twitter:site" content="wangmingjob">
+<meta property="fb:admins" content="100000247608790">
+  <!-- Swiftype -->
+  <meta class="swiftype" name="title" data-type="string" content="React 一个用户构建用户界面的库">
+  <!-- Baidu Analytics -->
+  
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "//hm.baidu.com/hm.js?bb4b770d7fdf4e05245cd1327199d813";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+
+
+  <script>
+    var App = {
+        root:'/'    
+    };
+  </script>
+</head>
+
+<body>
+<div class="root">
+  <div id="container" class="container">
+    <header id="header" class="wrapper header">
+  <div id="header-inner" class="inner header-inner">
+    <h1 id="logo-wrap" class="logo-wrap">
+      <a href="/index.html" id="logo" class="logo">前端代码规范</a>
+    </h1>
+    <nav id="main-nav" class="main-nav">
+      <ul>
+        <li class="main-nav-item"><a href="/docs/" class="main-nav-link">文档</a></li><li class="main-nav-item"><a href="/news/" class="main-nav-link">博客</a></li>
+        <li class="main-nav-item">
+          <a href="https://github.com/bmbstack/docs" class="main-nav-link"><i class="fa fa-github-alt"></i></a>
+        </li>
+      </ul>
+    </nav>
+    <div id="lang-select-wrap" class="lang-select-wrap">
+      <label id="lang-select-label" class="lang-select-label"><i class="fa fa-globe"></i><span>简体中文</span></label>
+      <select id="lang-select" data-canonical="docs/frontend-lib/react.html" class="lang-select">
+        
+          <option value="zh-cn" selected>简体中文</option>
+        
+          <option value="en">English</option>
+        
+      </select>
+    </div>
+    <div id="search-btn-wrap" class="main-nav-item search-btn-wrap">
+      <a id="search-btn" class="main-nav-link st-search-launcher search-btn"><i class="fa fa-search"></i></a>
+    </div>
+    <a id="mobile-nav-toggle" class="mobile-nav-toggle">
+      <span class="mobile-nav-toggle-bar"></span>
+      <span class="mobile-nav-toggle-bar"></span>
+      <span class="mobile-nav-toggle-bar"></span>
+    </a>
+    <a id="mobile-search-btn" class="st-search-launcher mobile-search-btn"></a>
+  </div>
+</header>
+
+    <div id="content-wrap" class="content-wrap">
+  <div id="content" class="wrapper">
+    <div id="content-inner" class="content-inner">
+      <article class="article-container" itemscope itemtype="http://schema.org/Article">
+        <div class="article-inner">
+          <div class="article">
+            <div class="inner">
+              <header class="article-header">
+                <h1 class="article-title" itemprop="name">React 一个用户构建用户界面的库</h1>
+                <a href="https://github.com/o2team/guide/edit/master/source/docs/frontend-lib/react.md" class="article-edit-link" title="改进本文"><i class="fa fa-pencil"></i></a>
+              </header>
+              <div class="article-content" itemprop="articleBody" data-swiftype-index="true">
+                <h2 id="组件、组件实例、元素" class="article-heading"><a href="#组件、组件实例、元素" class="headerlink" title="组件、组件实例、元素"></a>组件、组件实例、元素<a class="article-anchor" href="#组件、组件实例、元素" aria-hidden="true"></a></h2><p>通常一个组件在页面中会产生多个组件实例，每个组件实例都有各自的属性props和状态state，当一个组件中包含了其他组件，也就是组件嵌套场景，通常的处理办法会像backbone一样，在父组件中创建这个子组件，<br>并持有这个组件的引用，也就是会在适当的时候去创建、更新、销毁组件，那么当代码规模随着组件复杂度和组件状态复杂度变大时，这个组件的可维护性就会变差，进而增大组件间的耦合度，无法实现解耦。</p>
+<p><strong>那么这就是一个问题</strong>：</p>
+<blockquote>
+<p>由于组件嵌套增大了组件间的耦合度，导致组件的可维护性变差</p>
+</blockquote>
+<p>怎么解决这个问题的呢？React引入元素的概念，元素的引入就是为了解决上面的问题。</p>
+<p><strong>元素是一个具有描述性的对象而非真正的实例</strong>, 元素比DOM元素更轻量，因为它只是普通对象。</p>
+<ul>
+<li>只是一个普通对象</li>
+<li>可以使用对象来描述，也可以使用JSX来描述</li>
+</ul>
+<h2 id="React中的元素树（利用组件来封装元素树）" class="article-heading"><a href="#React中的元素树（利用组件来封装元素树）" class="headerlink" title="React中的元素树（利用组件来封装元素树）"></a>React中的元素树（利用组件来封装元素树）<a class="article-anchor" href="#React中的元素树（利用组件来封装元素树）" aria-hidden="true"></a></h2><p>React利用组件来封装元素树，背后会构建一个虚拟DOM也就是virtual DOM。</p>
+<p>当React看到一个元素类型是<strong>函数</strong>或者<strong>类</strong>的时候，会去查询那个组件会渲染出什么元素，并且安排好对应的属性，直到知道页面中每一个组件对应的最根本的DOM标签。</p>
+<blockquote>
+<p>对于一个React组件，属性是输入，元素树是输出</p>
+</blockquote>
+<p>元素并不是一个真正的实例，而是一种用来告诉 React 你希望哪些东西显示在页面中的方式。你不能调用元素里的任何方法，因为它一个不可变的描述对象，包含两个属性：type(string | ReactClass) 和 props(Object)。</p>
+<h5 id="1-当元素的-type-是一个字符串，就代表-DOM-节点中对应的标签名，props-对应标签上的属性，这就是-React-将要渲染的内容。" class="article-heading"><a href="#1-当元素的-type-是一个字符串，就代表-DOM-节点中对应的标签名，props-对应标签上的属性，这就是-React-将要渲染的内容。" class="headerlink" title="1. 当元素的 type 是一个字符串，就代表 DOM 节点中对应的标签名，props 对应标签上的属性，这就是 React 将要渲染的内容。"></a>1. 当元素的 type 是一个字符串，就代表 DOM 节点中对应的标签名，props 对应标签上的属性，这就是 React 将要渲染的内容。<a class="article-anchor" href="#1-当元素的-type-是一个字符串，就代表-DOM-节点中对应的标签名，props-对应标签上的属性，这就是-React-将要渲染的内容。" aria-hidden="true"></a></h5><figure class="highlight javascript"><table><tr><td class="code"><pre><div class="line">&#123;</div><div class="line">  <span class="attr">type</span>: <span class="string">'button'</span>,</div><div class="line">  <span class="attr">props</span>: &#123;</div><div class="line">      <span class="attr">className</span>: <span class="string">'button button-blue'</span>,</div><div class="line">      <span class="attr">children</span>: &#123;</div><div class="line">            <span class="attr">type</span>: <span class="string">'b'</span>,</div><div class="line">            <span class="attr">props</span>: &#123;</div><div class="line">                    <span class="attr">children</span>: <span class="string">'OK!'</span></div><div class="line">            &#125;</div><div class="line">      &#125;</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>这段元素的代码表示的是下面这样的HTML：<br><figure class="highlight html"><table><tr><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">button</span> <span class="attr">class</span>=<span class="string">'button button-blue'</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">b</span>&gt;</span></div><div class="line">        OK!</div><div class="line">    <span class="tag">&lt;/<span class="name">b</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">button</span>&gt;</span></div></pre></td></tr></table></figure></p>
+<p>按照惯例，当我们需要构建元素树的时候，就会在父级元素的 props.children 中将子元素详列出来。</p>
+<h5 id="2-然而，元素的-type-也可以是一个表示-React-组件的函数或者类" class="article-heading"><a href="#2-然而，元素的-type-也可以是一个表示-React-组件的函数或者类" class="headerlink" title="2. 然而，元素的 type 也可以是一个表示 React 组件的函数或者类"></a>2. 然而，元素的 type 也可以是一个表示 React 组件的函数或者类<a class="article-anchor" href="#2-然而，元素的-type-也可以是一个表示-React-组件的函数或者类" aria-hidden="true"></a></h5><figure class="highlight javascript"><table><tr><td class="code"><pre><div class="line">&#123;</div><div class="line">  <span class="attr">type</span>: Button,</div><div class="line">  <span class="attr">props</span>: &#123;</div><div class="line">      <span class="attr">color</span>: <span class="string">'blue'</span>,</div><div class="line">      <span class="attr">children</span>: <span class="string">'OK!'</span></div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>这就是 React 的核心思想了。</p>
+<p>一个描述组件的元素也属于元素的范畴，就像一个描述 DOM 节点的元素一样，它们可以互相嵌套混搭使用。<br>在一棵 DOM 树中，可以混合使用匹配 DOM 节点或者 React 组件的元素。<br><figure class="highlight javascript"><table><tr><td class="code"><pre><div class="line"><span class="keyword">const</span> DeleteAccount = <span class="function"><span class="params">()</span> =&gt;</span> (&#123;</div><div class="line">  <span class="attr">type</span>: <span class="string">'div'</span>,</div><div class="line">  <span class="attr">props</span>: &#123;</div><div class="line">  <span class="attr">children</span>: [&#123;</div><div class="line">        <span class="attr">type</span>: <span class="string">'p'</span>,</div><div class="line">        <span class="attr">props</span>: &#123;</div><div class="line">            <span class="attr">children</span>: <span class="string">'Are you sure?'</span></div><div class="line">        &#125;</div><div class="line">            </div><div class="line">    &#125;, &#123;</div><div class="line">        <span class="attr">type</span>: DangerButton,</div><div class="line">        <span class="attr">props</span>: &#123;</div><div class="line">            <span class="attr">children</span>: <span class="string">'Yep'</span></div><div class="line">        &#125;</div><div class="line">    &#125;, &#123;</div><div class="line">        <span class="attr">type</span>: Button,</div><div class="line">        <span class="attr">props</span>: &#123;</div><div class="line">            <span class="attr">color</span>: <span class="string">'blue'</span>,</div><div class="line">            <span class="attr">children</span>: <span class="string">'Cancel'</span></div><div class="line">        &#125;</div><div class="line">    &#125;]</div><div class="line">  &#125;);</div><div class="line">&#125;)</div></pre></td></tr></table></figure></p>
+<p>如果喜欢 jsx，还可以写成下面形式：</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><div class="line"><span class="keyword">const</span> DeleteAccount = <span class="function"><span class="params">()</span> =&gt;</span> (</div><div class="line">  <span class="xml"><span class="tag">&lt;<span class="name">div</span>&gt;</span></span></div><div class="line">    <span class="tag">&lt;<span class="name">p</span>&gt;</span>Are you sure?<span class="tag">&lt;/<span class="name">p</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">DangerButton</span>&gt;</span>Yep<span class="tag">&lt;/<span class="name">DangerButton</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">Button</span> <span class="attr">color</span>=<span class="string">'blue'</span>&gt;</span>Cancel<span class="tag">&lt;/<span class="name">Button</span>&gt;</span></div><div class="line">  <span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line">);</div></pre></td></tr></table></figure>
+
+              </div>
+              <footer class="article-footer">
+                <time class="article-footer-updated" datetime="2017-07-28T07:29:36.638Z" itemprop="dateModified">上次更新：2017-07-28</time>
+                <a href="/docs/css/webkit.html" class="article-footer-prev" title="移动端常用私有属性"><i class="fa fa-chevron-left"></i><span>上一页</span></a><a href="/docs/frontend-lib/redux.html" class="article-footer-next" title="redux"><span>下一页</span><i class="fa fa-chevron-right"></i></a>
+              </footer>
+              
+
+
+
+            </div>
+          </div>
+          <aside class="article-toc" id="article-toc" role="navigation">
+            <div id="article-toc-inner" class="article-toc-inner">
+              <strong class="sidebar-title">目录</strong>
+              <ul class="nav toc-nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#组件、组件实例、元素"><span class="nav-text">组件、组件实例、元素</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#React中的元素树（利用组件来封装元素树）"><span class="nav-text">React中的元素树（利用组件来封装元素树）</span></a><ul class="nav nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#1-当元素的-type-是一个字符串，就代表-DOM-节点中对应的标签名，props-对应标签上的属性，这就是-React-将要渲染的内容。"><span class="nav-text">1. 当元素的 type 是一个字符串，就代表 DOM 节点中对应的标签名，props 对应标签上的属性，这就是 React 将要渲染的内容。</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#2-然而，元素的-type-也可以是一个表示-React-组件的函数或者类"><span class="nav-text">2. 然而，元素的 type 也可以是一个表示 React 组件的函数或者类</span></a></li></ul></li></ul></li></ul></li></ul>
+              <a href="#" id="article-toc-top" class="article-toc-top">回到顶部</a>
+            </div>
+          </aside>
+        </div>
+      </article>
+      <aside id="sidebar" role="navigation" class="sidebar">
+  <div class="inner"><strong class="sidebar-title">开始阅读</strong><a href="/docs/index.html" class="sidebar-link">概述</a><strong class="sidebar-title">HTML规范</strong><a href="/docs/html/code.html" class="sidebar-link">代码规范</a><a href="/docs/html/note.html" class="sidebar-link">注释规范</a><a href="/docs/html/template.html" class="sidebar-link">文件模版</a><a href="/docs/html/webapp.html" class="sidebar-link">WebApp Meta</a><strong class="sidebar-title">图片规范</strong><a href="/docs/image/format.html" class="sidebar-link">图片格式</a><a href="/docs/image/size.html" class="sidebar-link">图片大小</a><a href="/docs/image/quality.html" class="sidebar-link">图片质量</a><a href="/docs/image/import.html" class="sidebar-link">图片引入</a><strong class="sidebar-title">CSS规范</strong><a href="/docs/css/code.html" class="sidebar-link">代码规范</a><a href="/docs/css/note.html" class="sidebar-link">注释规范</a><a href="/docs/css/sass.html" class="sidebar-link">SASS 规范</a><a href="/docs/css/reset.html" class="sidebar-link">重置样式</a><a href="/docs/css/query.html" class="sidebar-link">媒体查询</a><a href="/docs/css/webkit.html" class="sidebar-link">移动端常用私有属性</a><strong class="sidebar-title">前端常用框架</strong><a href="/docs/frontend-lib/react.html" class="sidebar-link current">react</a><a href="/docs/frontend-lib/redux.html" class="sidebar-link">redux</a><strong class="sidebar-title">命名规范</strong><a href="/docs/name/dir.html" class="sidebar-link">目录命名</a><a href="/docs/name/image.html" class="sidebar-link">图片命名</a><a href="/docs/name/htmlcss.html" class="sidebar-link">HTML/CSS 命名</a><a href="/docs/name/classname.html" class="sidebar-link">ClassName 命名</a><strong class="sidebar-title">后端规范</strong><a href="/docs/backend/data_security.html" class="sidebar-link">数据传输的安全性</a></div>
+</aside>
+
+    </div>
+  </div>
+</div>
+
+    <footer id="footer" class="wrapper">
+  <div class="inner">
+    <div id="footer-copyright">
+      &copy; 2017 <a href="http://bmbstack.com/" target="_blank">Bmbstack团队</a><br>
+      Documentation licensed under <a href="http://creativecommons.org/licenses/by/4.0/" target="_blank">CC BY 4.0</a>.
+    </div>
+    <div id="footer-links">
+      <a href="https://twitter.com/wangmingjob" class="footer-link" target="_blank"><i class="fa fa-twitter"></i></a>
+      <a href="https://github.com/bmbstack/docs" class="footer-link" target="_blank"><i class="fa fa-github-alt"></i></a>
+    </div>
+  </div>
+</footer>
+
+  </div>
+  <div id="mobile-nav-dimmer" class="mobile-nav-dimmer"></div>
+  <nav id="mobile-nav" class="mobile-nav">
+  <div id="mobile-nav-inner" class="mobile-nav-inner">
+    <ul id="mobile-nav-list" class="mobile-nav-list">
+      <li class="mobile-nav-item"><a href="/docs/" class="mobile-nav-link">文档</a></li><li class="mobile-nav-item"><a href="/news/" class="mobile-nav-link">博客</a></li>
+      <li class="mobile-nav-item">
+        <a href="https://github.com/bmbstack/docs" class="mobile-nav-link" rel="external" target="_blank">GitHub</a>
+      </li>
+    </ul>
+    
+      <strong class="mobile-nav-title">开始阅读</strong><a href="/docs/index.html" class="mobile-nav-link">概述</a><strong class="mobile-nav-title">HTML规范</strong><a href="/docs/html/code.html" class="mobile-nav-link">代码规范</a><a href="/docs/html/note.html" class="mobile-nav-link">注释规范</a><a href="/docs/html/template.html" class="mobile-nav-link">文件模版</a><a href="/docs/html/webapp.html" class="mobile-nav-link">WebApp Meta</a><strong class="mobile-nav-title">图片规范</strong><a href="/docs/image/format.html" class="mobile-nav-link">图片格式</a><a href="/docs/image/size.html" class="mobile-nav-link">图片大小</a><a href="/docs/image/quality.html" class="mobile-nav-link">图片质量</a><a href="/docs/image/import.html" class="mobile-nav-link">图片引入</a><strong class="mobile-nav-title">CSS规范</strong><a href="/docs/css/code.html" class="mobile-nav-link">代码规范</a><a href="/docs/css/note.html" class="mobile-nav-link">注释规范</a><a href="/docs/css/sass.html" class="mobile-nav-link">SASS 规范</a><a href="/docs/css/reset.html" class="mobile-nav-link">重置样式</a><a href="/docs/css/query.html" class="mobile-nav-link">媒体查询</a><a href="/docs/css/webkit.html" class="mobile-nav-link">移动端常用私有属性</a><strong class="mobile-nav-title">前端常用框架</strong><a href="/docs/frontend-lib/react.html" class="mobile-nav-link current">react</a><a href="/docs/frontend-lib/redux.html" class="mobile-nav-link">redux</a><strong class="mobile-nav-title">命名规范</strong><a href="/docs/name/dir.html" class="mobile-nav-link">目录命名</a><a href="/docs/name/image.html" class="mobile-nav-link">图片命名</a><a href="/docs/name/htmlcss.html" class="mobile-nav-link">HTML/CSS 命名</a><a href="/docs/name/classname.html" class="mobile-nav-link">ClassName 命名</a><strong class="mobile-nav-title">后端规范</strong><a href="/docs/backend/data_security.html" class="mobile-nav-link">数据传输的安全性</a>
+    
+  </div>
+  <div id="mobile-lang-select-wrap" class="mobile-lang-select-wrap">
+    <span id="mobile-lang-select-label" class="mobile-lang-select-label"><i class="fa fa-globe"></i><span>简体中文</span></span>
+    <select id="mobile-lang-select" data-canonical="docs/frontend-lib/react.html" class="mobile-lang-select">
+      
+        <option value="zh-cn" selected>简体中文</option>
+      
+        <option value="en">English</option>
+      
+    </select>
+  </div>
+</nav>
+
+  <!-- Scripts -->
+<!-- build:js js/dist.main.js -->
+<script src="/js/jquery.js"></script>
+<script src="/js/hammer.js"></script>
+<script src="/assets/bootstrap/js/bootstrap.js"></script>
+<script src="/js/lang_select.js"></script>
+<script src="/js/toc.js"></script>
+<script src="/js/mobile_nav.js"></script>
+<!-- endbuild -->
+
+<!-- Swiftype -->
+<script type="text/javascript">
+  (function(w,d,t,u,n,s,e){w['SwiftypeObject']=n;w[n]=w[n]||function(){
+  (w[n].q=w[n].q||[]).push(arguments);};s=d.createElement(t);
+  e=d.getElementsByTagName(t)[0];s.async=1;s.src=u;e.parentNode.insertBefore(s,e);
+  })(window,document,'script','//s.swiftypecdn.com/install/v1/st.js','_st');
+
+  _st('install','nxhXzi1rDss_9_P_6zBa');
+</script>
+
+</div>
+</body>
+</html>
